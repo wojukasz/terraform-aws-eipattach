@@ -76,16 +76,15 @@
   */
 
 module "lambda" {
-  source = "claranet/lambda/aws"
+  source  = "claranet/lambda/aws"
+  version = "0.8.3"
 
   function_name = "${var.name}"
   description   = "Attaches Elastic IPs to instances"
   handler       = "main.lambda_handler"
   runtime       = "python3.6"
   timeout       = "${var.timeout}"
-
-  source_path = "${path.module}/lambda"
-
+  source_path   = "${path.module}/lambda"
   attach_policy = true
   policy        = "${data.aws_iam_policy_document.lambda.json}"
 
